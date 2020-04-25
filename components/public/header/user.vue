@@ -12,10 +12,21 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import axios from 'axios'
+
+Vue.prototype.$axios = axios
+
 export default {
     data() {
         return {
             user: ''
+        }
+    },
+    async mounted () {
+        const {status, data: {user}} = await $axios.get('/users/getUser')
+        if (status === 200) {
+            this.user = user
         }
     }
 }
