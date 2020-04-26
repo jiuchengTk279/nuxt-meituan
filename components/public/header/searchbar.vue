@@ -12,14 +12,18 @@
                     <button class="el-button el-button--primary"><i class="el-icon-search" /></button>
                     <dl class="hotPlace" v-if="isHotPlace">
                         <dt>热门搜索</dt>
-                        <dd v-for="(item,index) in $store.state.home.hotPlace.slice(0, 5)" :key="index">{{ item.name }}</dd>
+                        <dd v-for="(item,index) in $store.state.home.hotPlace.slice(0, 5)" :key="index">
+                            <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
+                        </dd>
                     </dl>
                     <div class="searchList" v-if="isSearchList">
-                        <dd v-for="(item,index) in searchList" :key="index">{{ item.name }}</dd>
+                        <dd v-for="(item,index) in searchList" :key="index">
+                            <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
+                        </dd>
                     </div>
                 </div>
                 <p class="suggset">
-                    <a href="#" v-for="(item, index) in $store.state.home.hotPlace.slice(0, 5)" :key="index">{{ item.name }}</a>
+                    <a :href="'/products?keyword='+encodeURIComponent(item.name)" v-for="(item, index) in $store.state.home.hotPlace.slice(0, 5)" :key="index">{{ item.name }}</a>
                     <!-- <a href="#">故宫博物馆</a>
                     <a href="#">故宫博物馆</a>
                     <a href="#">故宫博物馆</a> -->
