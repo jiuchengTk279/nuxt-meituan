@@ -14,6 +14,8 @@ import passport from './interface/untils/passport'
 import users from './interface/users'
 import geo from './interface/geo'
 import search from './interface/search'
+import categroy from './interface/categroy'
+import cart from './interface/cart'
 
 const app = new Koa()
 
@@ -60,6 +62,8 @@ async function start () {
   app.use(users.routes()).use(users.allowedMethods())
   app.use(geo.routes()).use(geo.allowedMethods())
   app.use(search.routes()).use(search.allowedMethods())
+  app.use(categroy.routes()).use(categroy.allowedMethods())
+  app.use(cart.routes()).use(cart.allowedMethods())
 
   app.use((ctx) => {
     ctx.status = 200
