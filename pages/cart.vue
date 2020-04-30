@@ -37,8 +37,20 @@ export default {
         }
     },
     methods: {
-        submit () {
-
+        async submit () {
+            let {status, data: {code, id}} = await this.$axios.post('/order/createOrder', {
+                count: this.cart[0].count,
+                price: this.cart[0].price,
+                id: this.cartNo
+            })
+            if (status === 200 && code === 0) {
+                this.$alert(`恭喜您，已成功下单，订单号：${id}`, '下单成功', {
+                    confirmButtonText:'确定',
+                    callback: action => {
+                        location.href = '/order'
+                    }
+                })
+            }
         }
     },
     // asyncData 处理组件的数据
